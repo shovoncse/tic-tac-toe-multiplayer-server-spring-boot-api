@@ -28,4 +28,24 @@ public class RoomController {
     public boolean isRoomFull(@PathVariable Long roomId) {
         return roomService.isRoomFull(roomId);
     }
+
+    @GetMapping("/{roomId}")
+    public Room getRoom(@PathVariable Long roomId) {
+        return roomService.getRoom(roomId);
+    }
+
+    @GetMapping("/delete/{roomId}")
+    public void deleteRoom(@PathVariable Long roomId) {
+        roomService.deleteRoom(roomId);
+    }
+
+    @GetMapping("/deleteAll")
+    public void deleteAllRooms() {
+        roomService.deleteAllRooms();
+    }
+
+    @GetMapping("/exists/{roomId}")
+    public boolean roomExists(@PathVariable Long roomId) {
+        return roomService.roomExists(roomId);
+    }
 }

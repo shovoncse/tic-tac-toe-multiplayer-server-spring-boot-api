@@ -25,4 +25,42 @@ public class RoomService {
         Room room = roomRepository.findByRoomId(roomId);
         return room.getPlayer2() != null;
     }
+
+    public Room getRoom(Long roomId) {
+        return roomRepository.findByRoomId(roomId);
+    }
+
+    public void deleteRoom(Long roomId) {
+        roomRepository.deleteByRoomId(roomId);
+    }
+
+    public void deleteAllRooms() {
+        roomRepository.deleteAll();
+    }
+
+    public boolean roomExists(Long roomId) {
+        return roomRepository.existsByRoomId(roomId);
+    }
+
+    public boolean roomIsEmpty(Long roomId) {
+        Room room = roomRepository.findByRoomId(roomId);
+        return room.getPlayer1() == null && room.getPlayer2() == null;
+    }
+
+    public boolean roomHasOnePlayer(Long roomId) {
+        Room room = roomRepository.findByRoomId(roomId);
+        return room.getPlayer1() != null && room.getPlayer2() == null;
+    }
+
+    public boolean roomHasTwoPlayers(Long roomId) {
+        Room room = roomRepository.findByRoomId(roomId);
+        return room.getPlayer1() != null && room.getPlayer2() != null;
+    }
+
+    public boolean roomHasPlayer(Long roomId, String player) {
+        Room room = roomRepository.findByRoomId(roomId);
+        return room.getPlayer1().equals(player) || room.getPlayer2().equals(player);
+    }
+
+    
 }
